@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unique Fitness Gym | Pinarayi, Kerala</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              300: '#fde047',
+              400: '#facc15',
+              500: '#eab308',
+              600: '#ca8a04',
+            },
+            slateBg: '#0b0f19',
+            cardBg: '#131b2e'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- React & ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  
+  <!-- Babel Compiler -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0f19;
+      color: #f3f4f6;
+    }
+    .neon-glow {
+      box-shadow: 0 0 25px rgba(234, 179, 8, 0.25);
+    }
+    .neon-text {
+      color: #facc15;
+      text-shadow: 0 0 12px rgba(250, 204, 21, 0.3);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #1f293d;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-slateBg text-gray-100 antialiased custom-scrollbar">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // Direct WhatsApp phone number for Unique Fitness Gym
+    const PHONE_NUMBER = "919000000000";
+
+    const GALLERY_IMAGES = [
+      {
+        id: 1,
+        title: "Free Weights & Dumbbell Zone",
+        subtitle: "Rubberized plates & dumbbells up to 40kg",
+        url: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=1000",
+        category: "Strength Area"
+      },
+      {
+        id: 2,
+        title: "Commercial Power Racks",
+        subtitle: "Heavy duty squat racks & cable machines",
+        url: "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&q=80&w=1000",
+        category: "Power Zone"
+      },
+      {
+        id: 3,
+        title: "Cardio Treadmill Deck",
+        subtitle: "High-end treadmills & spin bikes",
+        url: "https://images.pexels.com/photos/1954524/pexels-photo-1954524.jpeg?auto=compress&cs=tinysrgb&w=1000",
+        category: "Cardio Station"
+      },
+      {
+        id: 4,
+        title: "Personal Training Session",
+        subtitle: "One-on-one expert coach guidance",
+        url: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&q=80&w=1000",
+        category: "Personal Training"
+      }
+    ];
+
+    function App() {
+      const [selectedImage, setSelectedImage] = useState(null);
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+      useEffect(() => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      }, [selectedImage, mobileMenuOpen]);
+
+      const getWhatsAppLink = (message) => {
+        return `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
+      };
+
+      return (
+        <div class="min-h-screen flex flex-col justify-between">
+          
+          {}
+          <header class="sticky top-0 z-40 bg-slateBg/90 backdrop-blur-md border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+              
+              {/* Gym Name & Location Badge */}
+              <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-500 text-slateBg flex items-center justify-center font-black text-xl shadow-lg shadow-brand-500/20">
+                  U
+                </div>
+                <div>
+                  <span class="text-lg font-black tracking-wider text-white block leading-tight">
+                    UNIQUE <span class="text-brand-400">FITNESS</span>
+                  </span>
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 flex items-center gap-1">
+                    <i data-lucide="map-pin" class="w-3 h-3 text-brand-400"></i> Pinarayi, Kerala
+                  </span>
+                </div>
+              </a>
+
+              {/* Navigation Links */}
+              <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-gray-300">
+                <a href="#highlights" class="hover:text-brand-400 transition-colors">Facilities</a>
+                <a href="#gallery" class="hover:text-brand-400 transition-colors">Photos</a>
+                <a href="#membership" class="hover:text-brand-400 transition-colors">Membership</a>
+                <a href="#location" class="hover:text-brand-400 transition-colors">Contact & Hours</a>
+              </nav>
+
+              {/* Call / WhatsApp CTAs */}
+              <div class="hidden md:flex items-center gap-3">
+                <a 
+                  href="tel:+919000000000"
+                  class="p-2.5 rounded-xl border border-gray-700 text-gray-300 hover:text-white hover:bg-gray-800 transition-all text-xs font-bold flex items-center gap-2"
+                >
+                  <i data-lucide="phone" class="w-4 h-4 text-brand-400"></i>
+                  Call Now
+                </a>
+                <a 
+                  href={getWhatsAppLink("Hi Unique Fitness Gym, I want to inquire about gym membership details.")} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="bg-brand-500 hover:bg-brand-400 text-slateBg font-extrabold px-5 py-2.5 rounded-xl shadow-md transition-all text-xs flex items-center gap-2"
+                >
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                  WhatsApp Us
+                </a>
+              </div>
+
+              {/* Mobile Menu Button */}
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+                class="md:hidden p-2 text-gray-300 hover:text-white"
+              >
+                <i data-lucide={mobileMenuOpen ? "x" : "menu"} class="w-6 h-6"></i>
+              </button>
+            </div>
+
+            {/* Mobile Nav Dropdown */}
+            {mobileMenuOpen && (
+              <div class="md:hidden bg-cardBg border-b border-gray-800 px-4 pt-3 pb-6 space-y-3 text-sm font-semibold">
+                <a href="#highlights" onClick={() => setMobileMenuOpen(false)} class="block py-1.5 text-gray-300">Facilities</a>
+                <a href="#gallery" onClick={() => setMobileMenuOpen(false)} class="block py-1.5 text-gray-300">Photos</a>
+                <a href="#membership" onClick={() => setMobileMenuOpen(false)} class="block py-1.5 text-gray-300">Membership</a>
+                <a href="#location" onClick={() => setMobileMenuOpen(false)} class="block py-1.5 text-gray-300">Contact & Location</a>
+                <div class="pt-2 flex flex-col gap-2">
+                  <a 
+                    href={getWhatsAppLink("Hi Unique Fitness Gym, I'd like to book a free trial session.")}
+                    target="_blank"
+                    class="w-full bg-brand-500 text-slateBg font-black py-3 rounded-xl text-center text-xs uppercase"
+                  >
+                    Chat on WhatsApp
+                  </a>
+                </div>
+              </div>
+            )}
+          </header>
+
+          {}
+          <section class="relative py-20 md:py-32 overflow-hidden border-b border-gray-800">
+            {/* Background High Quality Gym Photo with dark overlay */}
+            <div class="absolute inset-0 z-0">
+              <img 
+                src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=1800" 
+                alt="Gym Hero Background" 
+                class="w-full h-full object-cover object-center opacity-25"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slateBg via-slateBg/80 to-transparent"></div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center max-w-3xl mx-auto">
+
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight uppercase">
+                Transform Your Body at <span class="neon-text">Unique Fitness Center</span>
+              </h1>
+
+              <p class="text-gray-300 text-base sm:text-lg mt-6 leading-relaxed">
+                State-of-the-art equipment, certified trainers, heavy weight training zones, and a supportive atmosphere built for your personal transformation.
+              </p>
+
+              {/* Hero Call to Action Buttons */}
+              <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+                <a 
+                  href={getWhatsAppLink("Hi! I would like to book a Free Trial session at Unique Fitness Gym Pinarayi.")} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="w-full sm:w-auto bg-brand-500 hover:bg-brand-400 text-slateBg font-black text-sm px-8 py-4 rounded-xl shadow-lg transition-all hover:scale-105 flex items-center justify-center gap-2 uppercase tracking-wide"
+                >
+                  <i data-lucide="zap" class="w-5 h-5 fill-current"></i>
+                  Book Free Trial
+                </a>
+
+                <a 
+                  href={getWhatsAppLink("Hi Unique Fitness Gym, please share location and membership details.")} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="w-full sm:w-auto bg-cardBg hover:bg-gray-800 border border-gray-700 text-white font-bold text-sm px-8 py-4 rounded-xl transition-all flex items-center justify-center gap-2"
+                >
+                  <i data-lucide="message-square" class="w-5 h-5 text-emerald-400"></i>
+                  Chat on WhatsApp
+                </a>
+              </div>
+            </div>
+          </section>
+
+          {}
+          <section id="highlights" class="py-16 bg-slateBg border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-400 mb-2">Why Choose Us</h2>
+                <p class="text-2xl sm:text-3xl font-black text-white uppercase">DESIGNED FOR MAXIMUM RESULTS</p>
+              </div>
+
+              <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="bg-cardBg border border-gray-800 p-6 rounded-2xl">
+                  <div class="w-12 h-12 bg-brand-500/10 text-brand-400 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="dumbbell" class="w-6 h-6"></i>
+                  </div>
+                  <h3 class="text-lg font-bold text-white mb-2">Modern Equipment</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">
+                    Heavy duty power racks, rubberized free weights up to 40kg, and smooth cable crossover machines.
+                  </p>
+                </div>
+
+                <div class="bg-cardBg border border-gray-800 p-6 rounded-2xl">
+                  <div class="w-12 h-12 bg-brand-500/10 text-brand-400 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="user-check" class="w-6 h-6"></i>
+                  </div>
+                  <h3 class="text-lg font-bold text-white mb-2">Certified Trainers</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">
+                    Expert trainer support to guide your technique, workout split, and injury prevention.
+                  </p>
+                </div>
+
+                <div class="bg-cardBg border border-gray-800 p-6 rounded-2xl">
+                  <div class="w-12 h-12 bg-brand-500/10 text-brand-400 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="clock" class="w-6 h-6"></i>
+                  </div>
+                  <h3 class="text-lg font-bold text-white mb-2">Flexible Timings</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">
+                    Convenient morning and evening batches designed to fit working professionals & students.
+                  </p>
+                </div>
+
+                <div class="bg-cardBg border border-gray-800 p-6 rounded-2xl">
+                  <div class="w-12 h-12 bg-brand-500/10 text-brand-400 rounded-xl flex items-center justify-center mb-4">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                  </div>
+                  <h3 class="text-lg font-bold text-white mb-2">Spacious & Clean</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">
+                    Well-ventilated, hygienic space with dedicated locker and changing facilities.
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {}
+          <section id="gallery" class="py-16 bg-slateBg/50 border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-400 mb-2">Facility Showcase</h2>
+                <p class="text-2xl sm:text-3xl font-black text-white uppercase">INSIDE UNIQUE FITNESS</p>
+                <p class="text-gray-400 text-xs mt-2">Tap any photo to view facility details</p>
+              </div>
+
+              {/* Responsive Photo Grid */}
+              <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {GALLERY_IMAGES.map((img) => (
+                  <div 
+                    key={img.id} 
+                    onClick={() => setSelectedImage(img)}
+                    class="group relative rounded-2xl overflow-hidden bg-cardBg border border-gray-800 cursor-pointer hover:border-brand-500 transition-all shadow-lg"
+                  >
+                    <div class="h-64 overflow-hidden">
+                      <img 
+                        src={img.url} 
+                        alt={img.title} 
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slateBg via-slateBg/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity p-5 flex flex-col justify-end">
+                      <span class="text-[10px] font-black uppercase text-brand-400 tracking-wider mb-1">{img.category}</span>
+                      <h4 class="text-sm font-bold text-white leading-tight">{img.title}</h4>
+                      <p class="text-[11px] text-gray-300 mt-1">{img.subtitle}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </section>
+
+          {}
+          {selectedImage && (
+            <div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
+              <div class="bg-cardBg border border-gray-700 rounded-2xl max-w-2xl w-full p-4 relative overflow-hidden shadow-2xl">
+                <button 
+                  onClick={() => setSelectedImage(null)} 
+                  class="absolute top-4 right-4 bg-slateBg/80 text-gray-300 hover:text-white p-2 rounded-full border border-gray-700 z-10"
+                >
+                  <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+
+                <img 
+                  src={selectedImage.url} 
+                  alt={selectedImage.title} 
+                  class="w-full h-80 object-cover rounded-xl"
+                />
+
+                <div class="mt-4 p-2">
+                  <span class="text-xs font-black uppercase text-brand-400">{selectedImage.category}</span>
+                  <h3 class="text-xl font-bold text-white mt-1">{selectedImage.title}</h3>
+                  <p class="text-xs text-gray-300 mt-1">{selectedImage.subtitle}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {}
+          <section id="membership" class="py-16 bg-slateBg border-b border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-extrabold uppercase tracking-widest text-brand-400 mb-2">Transparent Pricing</h2>
+                <p class="text-2xl sm:text-3xl font-black text-white uppercase">SIMPLE MEMBERSHIP PLANS</p>
+                <p class="text-gray-400 text-xs mt-2">No long term locks or hidden costs.</p>
+              </div>
+
+              {/* 3 Simple Cards */}
+              <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                
+                {/* Plan 1 */}
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                  <div>
+                    <span class="text-xs font-bold text-gray-400 uppercase">Monthly Pass</span>
+                    <div class="mt-4 mb-6">
+                      <span class="text-4xl font-black text-white">₹999</span>
+                      <span class="text-xs text-gray-400"> / month</span>
+                    </div>
+
+                    <ul class="space-y-3 text-xs text-gray-300 mb-8">
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Full Gym Floor Access
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Free Weights & Dumbbells
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> General Trainer Guidance
+                      </li>
+                    </ul>
+                  </div>
+
+                  <a 
+                    href={getWhatsAppLink("Hi, I am interested in the Monthly Plan (₹999/mo) at Unique Fitness Pinarayi.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3.5 rounded-xl text-center text-xs uppercase tracking-wider block"
+                  >
+                    Get Started
+                  </a>
+                </div>
+
+                {/* Plan 2 - Highlighted */}
+                <div class="bg-cardBg border-2 border-brand-500 rounded-2xl p-6 sm:p-8 flex flex-col justify-between relative shadow-xl shadow-brand-500/10">
+                  <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-500 text-slateBg text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                    Best Value
+                  </div>
+
+                  <div>
+                    <span class="text-xs font-bold text-brand-400 uppercase">3 Months Transformation</span>
+                    <div class="mt-4 mb-6">
+                      <span class="text-4xl font-black text-white">₹2,699</span>
+                      <span class="text-xs text-gray-400"> / 3 months</span>
+                    </div>
+
+                    <ul class="space-y-3 text-xs text-gray-200 mb-8">
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> <strong>All Monthly Benefits</strong>
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Customized Workout Routine
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Basic Diet Chart Included
+                      </li>
+                    </ul>
+                  </div>
+
+                  <a 
+                    href={getWhatsAppLink("Hi, I am interested in the 3-Month Plan (₹2699) at Unique Fitness Pinarayi.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full bg-brand-500 hover:bg-brand-400 text-slateBg font-black py-3.5 rounded-xl text-center text-xs uppercase tracking-wider block"
+                  >
+                    Get Started
+                  </a>
+                </div>
+
+                {/* Plan 3 */}
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                  <div>
+                    <span class="text-xs font-bold text-gray-400 uppercase">Annual Membership</span>
+                    <div class="mt-4 mb-6">
+                      <span class="text-4xl font-black text-white">₹8,999</span>
+                      <span class="text-xs text-gray-400"> / year</span>
+                    </div>
+
+                    <ul class="space-y-3 text-xs text-gray-300 mb-8">
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Maximum Yearly Savings
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Locker Access
+                      </li>
+                      <li class="flex items-center gap-2">
+                        <i data-lucide="check" class="w-4 h-4 text-brand-400"></i> Personal Trainer Assessment
+                      </li>
+                    </ul>
+                  </div>
+
+                  <a 
+                    href={getWhatsAppLink("Hi, I am interested in the Annual Membership (₹8999/yr) at Unique Fitness Pinarayi.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-3.5 rounded-xl text-center text-xs uppercase tracking-wider block"
+                  >
+                    Get Started
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {}
+          <footer id="location" class="py-16 bg-slateBg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              
+              <div class="grid md:grid-cols-2 gap-12 items-center border-b border-gray-800 pb-12">
+                
+                {/* Address and Hours */}
+                <div class="space-y-6">
+                  <div>
+                    <h3 class="text-2xl font-black text-white uppercase">VISIT UNIQUE FITNESS GYM</h3>
+                    <p class="text-xs text-gray-400 mt-1">Located in the heart of Pinarayi town</p>
+                  </div>
+
+                  <div class="space-y-4 text-xs text-gray-300">
+                    <div class="flex items-start gap-3">
+                      <div class="p-2 bg-cardBg rounded-lg text-brand-400">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                      </div>
+                      <div>
+                        <strong>Address:</strong><br />
+                        Near Bus Stand, Pinarayi, Kannur, Kerala - 670741
+                      </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                      <div class="p-2 bg-cardBg rounded-lg text-brand-400">
+                        <i data-lucide="clock" class="w-4 h-4"></i>
+                      </div>
+                      <div>
+                        <strong>Operating Hours:</strong><br />
+                        Mon - Sat: 5:30 AM - 10:00 AM | 4:00 PM - 9:30 PM<br />
+                        Sunday: 6:00 AM - 12:00 PM
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Direct Map Button */}
+                  <div class="flex flex-wrap gap-3 pt-2">
+                    <a 
+                      href="https://maps.google.com/?q=Pinarayi+Kannur+Kerala" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="bg-brand-500 hover:bg-brand-400 text-slateBg font-black px-6 py-3 rounded-xl text-xs flex items-center gap-2"
+                    >
+                      <i data-lucide="navigation" class="w-4 h-4"></i> Get Directions
+                    </a>
+                    
+                    <a 
+                      href={getWhatsAppLink("Hi! I want to visit Unique Fitness Gym today.")}
+                      target="_blank"
+                      class="bg-cardBg border border-gray-700 text-white font-bold px-6 py-3 rounded-xl text-xs flex items-center gap-2"
+                    >
+                      <i data-lucide="message-square" class="w-4 h-4 text-emerald-400"></i> WhatsApp Us
+                    </a>
+                  </div>
+                </div>
+
+                {/* Minimal Map Box */}
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 text-center space-y-4">
+                  <div class="w-12 h-12 bg-brand-500/10 text-brand-400 rounded-full mx-auto flex items-center justify-center">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                  </div>
+                  <h4 class="text-base font-bold text-white">Pinarayi Town Center</h4>
+                  <p class="text-xs text-gray-400">Conveniently accessible with ample bike & car parking facilities nearby.</p>
+                  <a 
+                    href="https://maps.google.com/?q=Pinarayi+Kannur+Kerala"
+                    target="_blank" 
+                    class="inline-block text-xs font-bold text-brand-400 underline hover:text-brand-300"
+                  >
+                    Open in Google Maps →
+                  </a>
+                </div>
+
+              </div>
+
+              {/* Copyright */}
+              <div class="pt-8 text-center text-xs text-gray-500">
+                © 2026 Unique Fitness Gym, Pinarayi. All rights reserved.
+              </div>
+
+            </div>
+          </footer>
+
+        </div>
+      );
+    }
+
+    // Render App
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
